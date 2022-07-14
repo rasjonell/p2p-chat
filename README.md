@@ -30,7 +30,7 @@ Then you need to change the `PeerContext` connection in `contexts/peers/index.ts
 
 ## Enabling HTTPS
 
-In order to use `MediaDevices` you must have an HTTPS connects.
+In order to use `MediaDevices` you must have an HTTPS connection.
 
 To enable HTTPS on the project root run:
 

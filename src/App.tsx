@@ -91,16 +91,22 @@ export default function App() {
   return (
     <div>
       <h1>WebRTC Video Chat</h1>
-      <h4>Share your ID to get a call</h4>
-      <div className="peer-id">
-        <pre>
-          {(
-            <span className="peer-id-span">
-              {id} <FaRegCopy className="clickable-icon" onClick={copyId} />
-            </span>
-          ) || 'loading ...'}
-        </pre>
-      </div>
+      {!currentCall ? (
+        <>
+          <h4>Share your ID to get a call</h4>
+          <div className="peer-id">
+            <pre>
+              {id ? (
+                <span className="peer-id-span">
+                  {id} <FaRegCopy className="clickable-icon" onClick={copyId} />
+                </span>
+              ) : (
+                'loading ...'
+              )}
+            </pre>
+          </div>
+        </>
+      ) : null}
 
       <div className="buttons">
         <input type="text" onChange={handleCalleeIdChange} placeholder="Enter Your Peer's ID" />
