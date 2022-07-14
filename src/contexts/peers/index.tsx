@@ -16,7 +16,7 @@ export const PeersContext = createContext<PeerContextData>({
 
 const PeersContextProvider: React.FC<PropsWithChildren> = (props) => {
   const [id, setId] = useState<Maybe<string>>(null);
-  const [peer] = useState(new Peer({ host: 'localhost', port: 9000, path: '/casio' }));
+  const [peer] = useState(new Peer());
 
   useEffect(() => {
     peer.on('open', (newId: string) => {
