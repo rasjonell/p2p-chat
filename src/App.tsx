@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useContext, useEffect, useRef, useState } from 'react';
+import { ChangeEventHandler, useCallback, useContext, useEffect, useRef, useState } from 'react';
 
 import { FaRegCopy } from 'react-icons/fa';
 
@@ -14,6 +14,15 @@ export default function App() {
   const remoteVideo = useRef<HTMLVideoElement | null>(null);
   const [calleeId, setCalleeId] = useState<string | null>(null);
   const [currentCall, setCurrentCall] = useState<MediaConnection | null>(null);
+
+  const endCall = useCallback(() => {
+    if (!(currentCall && remoteVideo.current)) return;
+
+    currentCall.close();
+    setCurrentCall(null);
+
+    remoteVideo.current.srcObject = null;
+  }, [currentCall]);
 
   useEffect(() => {
     if (!(peer && localVideo.current)) return;
@@ -40,7 +49,7 @@ export default function App() {
       // Doesn't work: https://github.com/peers/peerjs/issues/636
       call.on('close', endCall);
     });
-  }, []);
+  }, [endCall, peer]);
 
   const handleCalleeIdChange: ChangeEventHandler<HTMLInputElement> = ({ target: { value } }) => {
     setCalleeId(value);
@@ -77,15 +86,6 @@ export default function App() {
     });
 
     setCurrentCall(call);
-  };
-
-  const endCall = () => {
-    if (!(currentCall && remoteVideo.current)) return;
-
-    currentCall.close();
-    setCurrentCall(null);
-
-    remoteVideo.current.srcObject = null;
   };
 
   return (

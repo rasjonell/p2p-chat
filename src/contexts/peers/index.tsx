@@ -16,13 +16,13 @@ export const PeersContext = createContext<PeerContextData>({
 
 const PeersContextProvider: React.FC<PropsWithChildren> = (props) => {
   const [id, setId] = useState<Maybe<string>>(null);
-  const [peer, _setPeer] = useState(new Peer({ host: 'localhost', port: 9000, path: '/casio' }));
+  const [peer] = useState(new Peer({ host: 'localhost', port: 9000, path: '/casio' }));
 
   useEffect(() => {
     peer.on('open', (newId: string) => {
       setId(newId);
     });
-  }, []);
+  }, [peer]);
 
   return <PeersContext.Provider value={{ id, peer }} {...props} />;
 };
