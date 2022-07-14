@@ -1,6 +1,10 @@
 # WebRTC P2P Video/Audio Chat
 
+Check out the live app at https://rasjonell-p2p.netlify.app
+
 ## Using a Local Peer Discovery Server
+
+By default the app uses `PeerJS` cloud peer discovery server.
 
 In order to use a local Peer Discovery Server you need to install `peerjs` server:
 
@@ -19,9 +23,9 @@ $ peerjs --port 9000 --key peerjs --path /myapp
 Then you need to change the `PeerContext` connection in `contexts/peers/index.tsx`:
 
 ```diff
-- const [peer, _setPeer] = useState(new Peer());
+- const [peer] = useState(new Peer());
 
-+ const [peer, _setPeer] = useState(new Peer({ host: 'localhost', port: 9000, path: '/myapp' }));
++ const [peer] = useState(new Peer({ host: 'localhost', port: 9000, path: '/myapp' }));
 ```
 
 ## Enabling HTTPS
