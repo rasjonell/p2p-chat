@@ -55,6 +55,6 @@ Now you can run `yarn start` and have fun!
 
 ## To Do
 
-- [ ] Fix `call.on('close')` event not being
+- [ ] Fix `call.on('close')` event not being emitted
 - [ ] Enable username identification
 - [ ] Persist usernames per device
