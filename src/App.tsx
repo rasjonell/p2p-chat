@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { ChangeEventHandler, useContext, useEffect, useRef, useState } from 'react';
 
 import { FaRegCopy } from 'react-icons/fa';
 
